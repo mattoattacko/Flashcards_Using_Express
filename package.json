@@ -1,0 +1,22 @@
+{
+  "name": "flashcards_using_express",
+  "version": "1.0.0",
+  "description": "Creating a basic set of study flashcards using Express.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattoattacko/Flashcards_Using_Express.git"
+  },
+  "author": "Matthew McQuain",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mattoattacko/Flashcards_Using_Express/issues"
+  },
+  "homepage": "https://github.com/mattoattacko/Flashcards_Using_Express#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
