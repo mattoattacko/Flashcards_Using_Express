@@ -22,8 +22,9 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.get('/hello', (req, res) => {
-  res.send('<h2>Aloha 2</h2>');
+app.get('/cards', (req, res) => {
+  // here we pass in an object with the property "prompt", set to a question we want to ask. 
+  res.render('card', { prompt: "Who is buried in Grants Tomb?", hint: "Think about whose tomb it is"});
 });
 
 app.listen(3000, () => {
