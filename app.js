@@ -27,6 +27,16 @@ app.get('/cards', (req, res) => {
   res.render('card', { prompt: "Who is buried in Grants Tomb?", colors, hint: "Think about whose tomb it is"});
 });
 
+// Here is a simple example of adding a route and rendering it. This get route is for serving the form itself.
+app.get('/hello', (req, res) => {
+  res.render('hello');
+});
+
+// This rerenders the form after we send the name to the server.
+app.post('/hello', (req, res) => {
+  res.render('hello');
+});
+
 app.listen(3000, () => {
   console.log('The application is running on localhost:3000')
 });
