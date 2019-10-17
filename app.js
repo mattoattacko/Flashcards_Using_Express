@@ -2,15 +2,6 @@ const express = require('express');
 
 const app = express();
 
-const colors = [
-  'red',
-  'orange',
-  'yellow',
-  'green',
-  'blue',
-  'purple'
-];
-
 app.set('view engine', 'pug');
 
 // Route Route
