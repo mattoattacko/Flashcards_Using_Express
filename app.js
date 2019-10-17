@@ -2,6 +2,15 @@ const express = require('express');
 
 const app = express();
 
+const colors = [
+  'red',
+  'orange',
+  'yellow',
+  'green',
+  'blue',
+  'purple'
+];
+
 app.set('view engine', 'pug');
 
 // Route Route
@@ -24,7 +33,7 @@ app.get('/', (req, res) => {
 
 app.get('/cards', (req, res) => {
   // here we pass in an object with the property "prompt", set to a question we want to ask. 
-  res.render('card', { prompt: "Who is buried in Grants Tomb?", hint: "Think about whose tomb it is"});
+  res.render('card', { prompt: "Who is buried in Grants Tomb?", colors, hint: "Think about whose tomb it is"});
 });
 
 app.listen(3000, () => {

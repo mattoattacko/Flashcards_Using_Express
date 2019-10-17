@@ -6,8 +6,15 @@ html(lang='en')
     header
       h1 Flash Cards
     section#content
+      ul
+        each color in colors 
+          li= color 
       h2= prompt
-      p
-        i Hint: #{hint}
+      if hint 
+        p
+          i Hint: #{hint}
     footer 
       p An application to help you study.
+
+// Functionality of <each color in colors>: "Colors" at the end is variable holding the array that we passed into the template. "Color" is each individual string from the array. Basically we are telling Pug "for each color in the colors array...
+// Functionality of <li= color>: ...render a list item element that holds the text of the color.
