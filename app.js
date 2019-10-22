@@ -36,8 +36,8 @@ app.get('/hello', (req, res) => {
 
 // This rerenders the form after we send the name to the server.
 app.post('/hello', (req, res) => {
-  console.dir(req.body);
-  res.render('hello');
+  // Here we are passing in the name our user enters to the render method. 
+  res.render('hello', { name: req.body.username }); 
 });
 
 app.listen(3000, () => {
