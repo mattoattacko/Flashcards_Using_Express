@@ -24,7 +24,9 @@ app.set('view engine', 'pug');
 */
 
 app.get('/', (req, res) => {
-  res.render('index');
+  const name = req.cookies.username;
+  // Here, since both the key and the value have the same name, we can use the ES6 shorthand to remove the colon and extra name. So instead of {name:name}, we can do just {name}.
+  res.render('index', { name });
 });
 
 app.get('/cards', (req, res) => {
@@ -34,7 +36,7 @@ app.get('/cards', (req, res) => {
 
 // Here is a simple example of adding a route and rendering it. This get route is for serving the form itself.
 app.get('/hello', (req, res) => {
-  res.render('hello', { name: req.cookies.username });
+  res.render('hello');
 });
 
 // This rerenders the form after we send the name to the server.
@@ -42,7 +44,7 @@ app.post('/hello', (req, res) => {
   // We set the cookie when the user submits the form to the post route. This sends a cookie to the browser after we submit the form. 
   res.cookie('username', req.body.username);
   // Here we are passing in the name our user enters to the render method. 
-  res.render('hello', { name: req.body.username }); 
+  res.redirect('/'); 
 });
 
 app.listen(3000, () => {
