@@ -1,9 +1,12 @@
 const express = require('express');
-const bodyParser = require ('body-parser');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false})); 
+app.use(cookieParser());
+
 app.set('view engine', 'pug');
 
 // Route Route
@@ -31,11 +34,13 @@ app.get('/cards', (req, res) => {
 
 // Here is a simple example of adding a route and rendering it. This get route is for serving the form itself.
 app.get('/hello', (req, res) => {
-  res.render('hello');
+  res.render('hello', { name: req.cookies.username });
 });
 
 // This rerenders the form after we send the name to the server.
 app.post('/hello', (req, res) => {
+  // We set the cookie when the user submits the form to the post route. This sends a cookie to the browser after we submit the form. 
+  res.cookie('username', req.body.username);
   // Here we are passing in the name our user enters to the render method. 
   res.render('hello', { name: req.body.username }); 
 });
