@@ -28,15 +28,11 @@ app.use((req, res, next) => {
   // We use the request object to pass the data from the first mw function to the next mw function. 
   req.message = 'Hi Im Message One';
   next();
-},
-// We can pass several functions into the same app.use method call. 
-(req, res, next) => {
-  console.log('Hi Im Middleware v1');
-  next();
 });
 
+// Testing to see if we can modify the request object
 app.use((req, res, next) => {
-  console.log('Hi Im Middleware v2');
+  console.log(req.message);
   next();
 });
 
