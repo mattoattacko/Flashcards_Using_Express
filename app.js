@@ -23,6 +23,29 @@ app.set('view engine', 'pug');
 * Once we set up Pug, we switch res.send() to res.render() in our index route. We use the name of the pug template as the parameter
 */
 
+// We often pass middleware as an anon function into the app.use method. This middleware will run everytime a request comes into our application. 
+app.use((req, res, next) => {
+  // We use the request object to pass the data from the first mw function to the next mw function. 
+  req.message = 'Hi Im Message One';
+  next();
+},
+// We can pass several functions into the same app.use method call. 
+(req, res, next) => {
+  console.log('Hi Im Middleware v1');
+  next();
+});
+
+app.use((req, res, next) => {
+  console.log('Hi Im Middleware v2');
+  next();
+});
+
+
+
+
+
+
+
 // This is the index route
 app.get('/', (req, res) => {
   const name = req.cookies.username;
