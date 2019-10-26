@@ -24,20 +24,29 @@ app.set('view engine', 'pug');
 */
 
 // We often pass middleware as an anon function into the app.use method. This middleware will run everytime a request comes into our application. 
+// app.use((req, res, next) => {
+//   // We use the request object to pass the data from the first mw function to the next mw function. 
+//   req.message = 'Hi Im Message One';
+//   next();
+// });
+
+// // Testing to see if we can modify the request object
+// app.use((req, res, next) => {
+//   console.log(req.message);
+//   next();
+// });
+
+// app.use((req, res, next) =>{
+//   console.log("hello");
+//   const err = new Error('This is an error message 1');
+//   err.status = 500;
+//   next(err);
+// });
+
 app.use((req, res, next) => {
-  // We use the request object to pass the data from the first mw function to the next mw function. 
-  req.message = 'Hi Im Message One';
+  console.log("world");
   next();
 });
-
-// Testing to see if we can modify the request object
-app.use((req, res, next) => {
-  console.log(req.message);
-  next();
-});
-
-
-
 
 
 
@@ -82,6 +91,22 @@ app.post('/hello', (req, res) => {
 app.post('/goodbye', (req, res) => {
   res.clearCookie('username');
   res.redirect('/hello');
+});
+
+app.use((req, res, next) => {
+  // This middleware is responsible for creating the Error object and handing it off to the error handler. 
+  const err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+app.use((err, req, res, next) => {
+// inside the handler, we render a template back to the client called 'error'. The error object has properties that hold the data about the error,so we can pass it in as the second argument to the render function. This gives the template access to the error data. We create the template in the views folder. 
+// We set the error property on res.locals to equal the error object.
+// We set the status of the response using the status method on the response object. Status method takes the number of the code. 500 is the general error. We set that above in our first error MW above. We pass that into our status method here. 
+  res.locals.error = err;
+  res.status(err.status);
+  res.render('error');
 });
 
 app.listen(3000, () => {
