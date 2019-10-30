@@ -14,10 +14,20 @@ router.get('/:id', (req, res) => {
   // We also want to store a reference to the hint. 
   const { hint } = cards[id];
 
-  // Now we route the text and the hint into an object that we can pass into the template. 
-  const templateData = { text, hint};
+  // Now we route the text and the hint into an object that we can pass into the template. "{ text, hint }"
+  // In order to show the hint only on the question side of the card, we will remove it from where the templateData variable is declared. 
+  const templateData = { text };
+
+  // To only display the hint on question side, we add an if statement, setting the hint property to equal "hint" when the "side" is holding the 'question' string. 
+  if (side === 'question') {
+    templateData.hint = hint;
+  }
   res.render('card', templateData)
 });
+
+
+
+
   // Lastly, we need to change the variable name in the card template from "card" to "text". This will ensure the question or answer will show up. 
 
   // here we pass in an object with the property "prompt", set to a question we want to ask. 
