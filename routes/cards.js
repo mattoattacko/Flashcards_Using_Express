@@ -32,7 +32,7 @@ router.get('/:id', (req, res) => {
   // This will check for the presence of a side.
   // If the side doesnt exist, we want to redirect to the same card with the query string added, pointing to the question side. 
   if ( !side ) {
-    res.redirect(`/cards/${id}?side=question`);
+    return res.redirect(`/cards/${id}?side=question`);
 }
   // We declare "name" and assign the "username" value from the requests "cookies". We then pass the "name" into the template (templateData below).
   const name = req.cookies.username;
