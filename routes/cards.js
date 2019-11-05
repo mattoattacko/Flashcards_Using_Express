@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { data } = require('./data/flashcardData.json');
+const { data } = require('../data/flashcardData.json');
 const { cards } = data;
 
 // This block of code helps redirect a user to random cards.
@@ -61,7 +61,7 @@ router.get('/:id', (req, res) => {
     templateData.sideToShowDisplay = 'Question';
   }
 
-  res.render('card', templateData)
+  res.render('card', templateData);
 });
 
 module.exports = router;
