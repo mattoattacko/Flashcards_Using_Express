@@ -2,7 +2,7 @@ extends layout
 
 block main
   section.namecard
-    .namecard-login
+    .namecard-hello
       if name 
         p.namecard-greeting Welcome, #{name}!
         form.namecard-exit(action='/goodbye', method='POST')
